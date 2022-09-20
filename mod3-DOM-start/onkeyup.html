@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <input type="text" onkeyup="fn(this)" >
+  <pre id="result"></pre>
+  <script>
+/* Напишите атрибут onkeyup в элементе ввода. Укажите ему значение "fn()". Напишите функцию fn(), которая будет считать и выводить в элемент с id=result информацию:
+- сколько букв в тексте, который ввели в <input />
+- сколько букв "а" в введённом тексте
+- присутствует ли в тексте слово 'javascript'
+- как выглядит введённая строка, если её привести к верхнему регистру
+*/
+
+    function fn(element) {
+      result.innerHTML = "всего букв в тексте: " + element.value.length;
+      result.innerHTML += "<br/>букв а (на всех языках) тексте: " + (element.value.match(/[aа]/g) || []).length;
+      result.innerHTML += "<br/>'javascript' в тексте " + (element.value.includes("javascript") ? "имеется" : "отсутствует");
+      result.innerHTML += "<br/>'to_upper: " + (element.value.toUpperCase());
+    }
+
+  </script>
+</body>
+</html>
