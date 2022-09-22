@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>lightbox</title>
+	<style>
+
+	* {
+	  font-family: Arial;
+	}
+	#gallery{
+	  width: 750px;
+	}
+	#gallery img{
+	  box-shadow: 0 0 2px #000;
+	  margin: 4px;
+	  border: 5px solid #fff;
+	}
+
+	#gallery img:hover{
+	  box-shadow: 0 0 7px #000;
+	}
+	#darkbox{
+	  background: rgba(0,0,0,.5);
+	}
+	#darkbox, #imgBox, #imgBox img {
+	  position: fixed;
+	  margin: auto;
+	  top: 0;
+	  left: 0;
+	  bottom: 0;
+	  right: 0;
+	}
+	#imgBox img {
+	  box-shadow: 0 0 10px #000;
+	  border: 5px solid #fff;
+	  border-radius: 5px;
+	}
+
+	</style>
+</head>
+<body>
+<div class="container">
+    <h1>Изображения</h1>
+    <div id="gallery">
+      <!--<img src="http://placehold.it/220x170" alt="" />
+      <img src="http://placehold.it/220x170" alt="" />
+      <img src="http://placehold.it/220x170" alt="" />
+      <img src="http://placehold.it/220x170" alt="" />
+      <img src="http://placehold.it/220x170" alt="" />   
+      <img src="http://placehold.it/220x170" alt="" />-->
+    </div>  
+  </div>  
+ <!-- <div id="darkbox"></div>
+  <div id="imgBox">
+  <img src="http://placehold.it/650x470" alt="" />
+  </div> -->
+<script>
+	let images = [
+	'cat1.jpg',
+	'cat2.jpg',
+	'cat3.jpg',
+	'cat4.jpg',
+	'cat5.jpg'  
+	];
+	let gallery = document.querySelector("#gallery");
+  
+	//Создать изображения (из thumb) в #gallery при помощи document.createElement и .appendChild
+		//Добавить обработчик нажатия .addEventListener насобытие click так, чтобы при нажатии на изображениесрабатывал произвольный alert
+		//Создать контейнер с идентификатором #darkbox и присоединить его к body
+		//Создать контейнер с идентификатором #imgBox и присоединить его к body. Внутри #imgBox должен быть создан элемент img с одноименным файлом из папки img
+		//Добавить таймер, который плавно поменяет opacity до 0 у #imgBox и при завершении вызовет удаление элементов darkbox и imgBox
+	images.forEach(el => {
+		let i = document.createElement("img")
+		i.src = "thumb/" + el;
+		i.dataset['file'] = el
+		gallery.appendChild(i)
+	})
+
+	//Добавить обработчик нажатия .addEventListener насобытие click так, чтобы при нажатии на изображениесрабатывал произвольный alert
+	gallery.addEventListener('click', ev => {
+		if (ev.target.nodeName !== "IMG") return
+
+		//Создать контейнер с идентификатором #darkbox и присоединить его к body
+		let d = document.createElement("div")
+		d.setAttribute("id", "darkbox") 
+		document.body.appendChild(d)
+
+		//Создать контейнер с идентификатором #imgBox и присоединить его к body. Внутри #imgBox должен быть создан элемент img с одноименным файлом из папки img
+		let box = document.createElement("div")
+		box.setAttribute("id", "imgBox") 
+		box.innerHTML = `<img src="img/${ev.target.dataset['file']}" alt="" />`
+		document.body.appendChild(box)
+		
+		//Добавить таймер, который плавно поменяет opacity до 0 у #imgBox и при завершении вызовет удаление элементов darkbox и imgBox
+		let opacity = 1
+		box.addEventListener('click', hide)
+		
+		function hide() {
+			opacity-= 0.05
+			box.style.opacity = opacity
+			if (opacity > 0) {
+				setTimeout(hide, 10)
+			}
+			else {
+				box.removeEventListener('click', hide)
+				d.remove()
+				box.remove()
+			}
+		}
+	})
+
+</script>
+
+</body>
+</html>
