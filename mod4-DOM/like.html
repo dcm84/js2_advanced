@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <button onclick="like(this)">Мне нравится <strong>0</strong></button>
+
+  <script>
+    /* 1. Реализовать функцию like() так, чтобы при каждом нажатии на кнопку счётчик "лайков" увеличивался на единицу */
+/*     function like(buttonElement) {
+      const counterElement = buttonElement.querySelector("strong");
+      let count = parseInt(counterElement.firstChild.nodeValue)
+      counterElement.firstChild.nodeValue = count + 1
+    } */
+
+    /* 2*. Чтобы количество "лайков" не пропадало при обновлении страницы используйте браузерный объект localStorage (https://developer.mozilla.org/ru/docs/Web/API/Window/localStorage) */
+    function like(buttonElement) {
+      let count = "count" in localStorage ? localStorage['count'] : 0
+      count++;
+      const counterElement = buttonElement.querySelector("strong");
+      counterElement.firstChild.nodeValue = count
+      localStorage['count'] = count
+    }
+    
+  </script>
+</body>
+</html>
