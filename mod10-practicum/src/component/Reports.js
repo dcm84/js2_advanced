@@ -1,0 +1,30 @@
+class Reports {
+    render(){
+        return `            <h2 id="reports">Отчёты</h2>
+        <div class="table-responsive">
+        <table class="table table-striped table-sm">
+            <thead>
+            <tr>
+                <th scope="col">Номер</th>
+                <th scope="col">Название</th>
+                <th scope="col">Дата</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>1001</td>
+                <td>random</td>
+                <td>data</td>
+            </tr>
+            <tr>
+                <td>1002</td>
+                <td>placeholder</td>
+                <td>irrelevant</td>         
+            </tr>                                     
+            </tbody>
+        </table>
+        </div>`
+    } 
+	
+}
+export default Reports;

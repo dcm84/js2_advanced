@@ -1,12 +1,12 @@
 {
-  "name": "mod9-tests-and-build",
+  "name": "mod10",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "source": "src/index.html",
   "browserlist": ">0,5%, last 2 versions, not dead",
   "scripts": {
-    "start": "parcel -p 5005 --open firefox",
+    "start": "parcel -p 5009 --open chrome",
     "build": "parcel build",
     "test": "jest"
   },
@@ -14,7 +14,6 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "jest": "^29.1.1",
     "parcel": "^2.7.0"
   }
 }
